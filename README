@@ -1,0 +1,38 @@
+# Descriere proiect
+
+Acest proiect implementeaza un arbore binar utilizand un min-heap pentru a gestiona nodurile si pentru a face diverse operatii legate de codificarea si decodificarea secventelor binare. Programul citeste date dintr-un fisier de intrare, construieste un arbore pe baza frecventelor si numelor satelitilor, si executa comenzi precum afisarea arborelui, decodificarea secventelor binare, gasirea codurilor binare pentru sateliti sau identificarea celui mai mic parinte comun pentru un set de sateliti. Toate operatiile sunt implementate folosind alocarea dinamica pentru eficienta si gestionarea memoriei.
+
+# Explicare main
+
+Programul primeste ca argumente de linie de comanda un mod de operare (-c1, -c2, -c3 sau -c4), un fisier de intrare si un fisier de iesire. In functie de modul specificat, programul proceseaza cerinte suplimentare din fisierul de intrare si genereaza rezultatele in fisierul de iesire.
+
+In cod sunt definite mai multe functii ajutatoare care faciliteaza gestionarea arborelui si a heap-ului, precum si eliberarea memoriei. Dintre acestea, mentionam:
+--> node_create - Creeaza un nod nou cu nume si frecventa specificate, alocand dinamic memoria necesara. Primeste un sir de caractere (name), o frecventa (freq) si dimensiunea numelui (name_size), returnand un pointer catre structura Node alocata dinamic, cu campurile left si right initializate la NULL.
+
+--> min_heap_create - Initializeaza un min-heap pentru stocarea nodurilor, folosind un vector dinamic. Aloca un Min_Heap cu o capacitate initiala de MAX_SIZE (100) si un vector de pointeri catre Node, returnand pointerul catre heap-ul creat.
+
+--> min_heap_insert - Insereaza un nod in heap, rearanjand structura pentru a mentine proprietatea de min-heap. Primeste un pointer catre Min_Heap si un pointer catre Node, dublând capacitatea heap-ului daca este depasita, si foloseste heapify_up pentru a reordona nodurile bazat pe frecventa si nume.
+
+--> min_heap_extract_min - Extrage nodul cu frecventa minima din heap, reorganizand heap-ul. Returneaza pointerul catre nodul minim, rearanjeaza heap-ul folosind heapify_down si reduce dimensiunea heap-ului; returneaza NULL daca heap-ul este gol.
+
+--> build_tree - Construieste arborele binar combinand nodurile din heap pana cand ramane un singur nod (radacina). Primeste numarul de noduri (n) si un vector de pointeri catre Node, folosind min_heap_insert si min_heap_extract_min pentru a combina nodurile intr-un arbore binar, returnand radacina.
+
+--> print_tree - Afiseaza arborele nivel cu nivel, incluzand frecventa si numele fiecarui nod. Primeste radacina arborelui si un pointer catre fisierul de iesire (FILE*), folosind tree_height si print_level pentru a afisa nodurile nivel cu nivel in formatul frecventa-nume.
+
+--> binary - Decodifica secvente binare parcurgand arborele si afiseaza numele satelitilor corespunzatori. Citeste un nr. de secvente (n) si secventele binare din fisierul de intrare, parcurge arborele pe baza cifrelor 0/1, afisand numele frunzelor atinse in fisierul de iesire.
+
+--> answear - Gaseste si afiseaza codurile binare pentru satelitii specificati, parcurgand arborele. Citeste un numar de nume (n) din fisierul de intrare, foloseste name_path pentru a genera secventa binara (0/1) catre fiecare frunza specificata, afisand-o in fisierul de iesire.
+
+--> repair - Identifica cel mai mic parinte comun pentru un set de sateliti si afiseaza numele acestuia. Citeste un numar de nume (n) si numele satelitilor, foloseste find_common_parent pentru a gasi nodul care contine toate numele date ca substring, afisand numele nodului in fisierul de iesire.
+
+--> tree_free - Elibereaza memoria alocata pentru arbore, inclusiv nodurile si numele acestora. Elibereaza recursiv memoria pentru un nod si subarborii sai, incluzand campul name, folosind free pentru fiecare alocare dinamica.
+
+
+# Structura proiectului
+
+main.c - Codul sursa al programului, care contine toate functiile si logica principala.
+README - Acest fisier, care ofera informatii despre proiect si utilizarea acestuia.
+Makefile -  Contine reguli pentru compilarea codului sursa intr-un executabil si curatarea fisierelor temporare.
+
+# Autor
+Ionascu George-Razvan, 314CA
